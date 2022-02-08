@@ -1,0 +1,59 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% EDIT HERE %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\tit}{Heun BFGS, 2nd test case} % title of figure (arbitrary)
+\newcommand{\scheme}{heun}					% ddt scheme (fwe, bwe, heun)
+\newcommand{\method}{bfgs}					% optimization method (cgm, bfgs)
+\newcommand{\case}{observations2}			% case name (observations1, observations2)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\newcommand{\inpath}{cpp/inputs/}
+\newcommand{\outpath}{cpp/outputs/}
+
+\begin{document}
+
+
+	% Replace this with the name of the file containing the data you want plotted.
+	\pgfplotstableread[skip first n=1]{\inpath \case.in}{\observations} 
+	\pgfplotstableread{\outpath \scheme _\method_\case.out}{\plotdata} 
+
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+		max space between ticks=30pt,
+		grid=major,
+		xmin=0,
+		width=35cm,
+		height=20cm,
+		minor tick num=1,
+		xlabel={Time (days)},
+		ylabel=Cases,
+		legend pos=outer north east,
+		title=\tit
+	]
+	\addplot [black] table [x index=0, y index=1] {\plotdata};
+	\addplot [orange] table [x index=0, y index=2] {\plotdata};
+	\addplot [blue] table [x index=0, y index=3] {\plotdata};
+	\addplot [green] table [x index=0, y index=4] {\plotdata};
+	\addplot [red] table [x index=0, y index=5] {\plotdata};
+	\legend{S, I, Q, R, D}
+	
+	\addplot [only marks,mark=x,black] table [x index = 0,y index=1] {\observations};
+	\addplot [only marks,mark=x,orange] table [x index = 0,y index=2] {\observations};
+	\addplot [only marks,mark=x,blue] table [x index = 0,y index=3] {\observations};
+	\addplot [only marks,mark=x,green] table [x index = 0,y index=4] {\observations};
+	\addplot [only marks,mark=x,red] table [x index = 0, y index=5] {\observations};
+	
+	\end{axis}
+	\end{tikzpicture}
+	
+\end{document}

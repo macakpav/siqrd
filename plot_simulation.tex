@@ -1,0 +1,89 @@
+\documentclass[border=5pt]{standalone}
+
+\newcommand{\case}{_1000_2_100_10_15}
+\newcommand{\path}{cpp/outputs/}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
+\begin{document}
+	
+	\pgfplotstableread{\path fwe_no_measures.out}{\plotdataEF}
+	\pgfplotstableread{\path bwe_quarantine.out}{\plotdataEB}
+	\pgfplotstableread{\path heun_lockdown.out}{\plotdataH}
+	
+	
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+		minor tick num=1,
+		max space between ticks=20pt,
+		grid=major,
+		xlabel={Time (days)},
+		ylabel=Cases, 
+		title=Euler forward no measures,
+		legend pos=outer north east
+	]
+	\addplot [black,very thick] table [x index=0, y index=1] {\plotdataEF};
+	\addplot [orange,very thick] table [x index=0, y index=2] {\plotdataEF};
+	\addplot [blue,very thick] table [x index=0, y index=3] {\plotdataEF};
+	\addplot [green,very thick] table [x index=0, y index=4] {\plotdataEF};
+	\addplot [red,very thick] table [x index=0, y index=5] {\plotdataEF};
+	\legend{S, I, Q, R, D}
+	
+	\end{axis}
+	\end{tikzpicture}
+	
+	
+	
+	
+	
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+		minor tick num=1,
+		max space between ticks=20pt,
+		grid=major,
+		xlabel={Time (days)},
+		ylabel=Cases, 
+		title=Euler backward quarantine,
+		legend pos=outer north east
+	]
+	\addplot [black,very thick] table [x index=0, y index=1] {\plotdataEB};
+	\addplot [orange,very thick] table [x index=0, y index=2] {\plotdataEB};
+	\addplot [blue,very thick] table [x index=0, y index=3] {\plotdataEB};
+	\addplot [green,very thick] table [x index=0, y index=4] {\plotdataEB};
+	\addplot [red,very thick] table [x index=0, y index=5] {\plotdataEB};
+	\legend{S, I, Q, R, D}
+	
+	\end{axis}
+	\end{tikzpicture}
+	
+	
+	
+	
+	
+	\begin{tikzpicture}[scale=1]
+	\begin{axis}[
+		minor tick num=1,
+		max space between ticks=20pt,
+		grid=major,
+		xlabel={Time (days)},
+		ylabel=Cases, 
+		title=Heun lockdown,
+		legend pos=outer north east
+	]
+	\addplot [black,very thick] table [x index=0, y index=1] {\plotdataH};
+	\addplot [orange,very thick] table [x index=0, y index=2] {\plotdataH};
+	\addplot [blue,very thick] table [x index=0, y index=3] {\plotdataH};
+	\addplot [green,very thick] table [x index=0, y index=4] {\plotdataH};
+	\addplot [red,very thick] table [x index=0, y index=5] {\plotdataH};
+	\legend{S, I, Q, R, D}
+	
+	\end{axis}
+	\end{tikzpicture}
+	
+
+	
+	
+	
+	
+\end{document}

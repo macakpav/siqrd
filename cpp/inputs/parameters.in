@@ -1,0 +1,26 @@
+0.5 0 0.2 0.005 0.0 100 5 
+beta mu gamma alpha delta S0 I0
+
+Parameters for SIQRD ODE model and two non-zero initial conditions (when necessary). 
+------------------------------------------
+1st case
+5.0 0.0 3.0 1.0 0.4 100.0 5.0   
+
+2nd case
+10.0 0.0 10.0 1.0 0.0 100.0 5.0 
+
+1st validation
+0.5 0 0.33 0 0 1.0 1.27e-6   
+    
+2nd validation
+10 0 1 0 0 0.95 0.05
+
+simulation.cpp
+0.5 0 0.2 0.005 0.0 100 5
+
+observation1
+0.32 0.03 0.151 0.004 0.052
+
+observation2
+0.5 0.08 0.04 0.004 0.09
+------------------------------------------
